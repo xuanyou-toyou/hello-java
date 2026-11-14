@@ -59,4 +59,21 @@ public class Student {
     public String toString(){
         return String.format("name = %s, id = %s, 总分 = %d, 平均分 = %.1f", name, id, getTotal(), getAverage());
     }
+
+    public void setMath(int math) {
+        this.math = math;
+    }
+    public void setName(String name) {
+        this.name = name;
+    }
+    public void setId(String id) {
+        this.id = id;
+    }
+    public void setChinese(int chinese) {
+        this.chinese = chinese;
+    }
+    public void setEnglish(int english) {
+        this.english = english;
+    }
+
 }
