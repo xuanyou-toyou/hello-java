@@ -1,8 +1,15 @@
-package demo.day04;
+package demo.day03;
 
 import demo.day02.Student;
 
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.IOException;
+import java.nio.file.Path;
+import java.util.ArrayList;
 import java.util.List;
+import java.nio.file.Files;
+
 
 /**
  * W4：学生数据持久化
@@ -46,6 +53,14 @@ public class StudentStorage {
      */
     public static void save(List<Student> students) {
         // TODO 1 写在这里
+        try(BufferedWriter writer = Files.newBufferedWriter(Path.of(FILE_PATH))){
+            for(Student s : students){
+                writer.write(s.getId() + "," + s.getName() + "," + s.getChinese() + "," + s.getMath() + "," + s.getEnglish());
+                writer.newLine();
+            }
+        } catch (IOException e){
+            System.out.println("保存失败：" + e.getMessage());
+        }
     }
 
     /**
@@ -78,6 +93,34 @@ public class StudentStorage {
      */
     public static List<Student> load() {
         // TODO 2 写在这里
-        return java.util.List.of();   // ← 这行是占位，写完删掉
+        List<Student> S = new ArrayList<>();
+        Path path = Path.of(FILE_PATH);
+        if (!Files.exists(path)) {          // ← 文件不在，直接返回空列表
+            return S;
+        }
+        try(BufferedReader reader = Files.newBufferedReader(path)){
+            String line;
+            while((line = reader.readLine()) != null){
+                String[] i = line.split(",");
+                if (i.length != 5) {
+                    System.out.println("跳过格式错误的行: " + line);
+                    continue;
+                }
+                try{
+                    Student s = new Student(i[0], i[1],
+                            Integer.parseInt(i[2]),
+                            Integer.parseInt(i[3]),
+                            Integer.parseInt(i[4]));
+                    S.add(s);
+                } catch (NumberFormatException e){
+                    System.out.println("跳过数字格式错误的行: " + line);
+                }
+
+            }
+
+        } catch (IOException e){
+            System.out.println("读取失败：" + e.getMessage());
+        }
+        return S;
     }
 }

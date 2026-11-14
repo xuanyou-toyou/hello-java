@@ -21,6 +21,8 @@ public class StudentManager {
 
     public static void main(String[] args) {
         System.out.println("=== 学生管理系统 ===");
+        students.addAll(StudentStorage.load());
+        System.out.println("已加载 " + students.size() + " 条学生记录");
         while (true) {
             showMenu();
             int choice = readInt("请选择：");
@@ -36,6 +38,7 @@ public class StudentManager {
                 }
                 default -> System.out.println("没有这个选项，请重新选择。");
             }
+            StudentStorage.save(students);
             System.out.println();
         }
     }

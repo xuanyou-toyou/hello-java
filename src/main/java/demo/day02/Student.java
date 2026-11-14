@@ -16,6 +16,8 @@ public class Student {
     private int math;
     private int english;
 
+    public Student(){
+    }
     // TODO 1：全参构造方法
     //   参数顺序：name, id, chinese, math, english
     //   里面把参数赋给同名的字段。注意 this.name = name 这种写法为什么需要 this
