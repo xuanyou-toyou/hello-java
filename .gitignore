@@ -7,3 +7,6 @@ target/
 
 # 运行产生的数据文件，不提交
 students.csv
+
+# 本地数据库配置（含密码），不提交
+db.properties

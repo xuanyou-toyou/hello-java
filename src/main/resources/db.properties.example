@@ -1,0 +1,12 @@
+# 数据库连接配置模板
+#
+# 使用方法：
+#   1. 把本文件复制一份，改名为 db.properties（去掉 .example）
+#   2. 把下面的 password 改成你自己的数据库密码
+#   3. db.properties 已被 .gitignore 忽略，不会提交到 Git
+#
+# 注意：本文件里不要填真实密码！
+
+db.url=jdbc:mysql://localhost:3306/student_db?useUnicode=true&characterEncoding=utf8&serverTimezone=Asia/Shanghai&useSSL=false&allowPublicKeyRetrieval=true
+db.user=root
+db.password=改成你自己的密码
